@@ -1,0 +1,11 @@
+{
+  // 出力スタイルと保存先
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded", 
+      "extensionName": ".css",
+      "savePath": "/public/assets/css" // ルートからの絶対パス
+    }
+  ],
+  "liveServer.settings.port": 5501
+}

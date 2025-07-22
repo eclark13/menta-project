@@ -1,0 +1,59 @@
+body{
+    color: #333;
+    line-height: 1.8;
+    font-family: "Noto Sans JP", sans-serif;
+
+        *{
+            box-sizing: border-box;
+        }
+        box-sizing: border-box;
+}
+a{
+    color: #333;
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+    vertical-align: bottom;
+}
+    p{
+    margin-bottom: 1.5em;
+    &:last-of-type{
+        margin-bottom: 0;
+    }
+}
+    h1,h2,h3,h4,h5,h6{
+    font-weight: normal;
+}
+.zen-old-mincho-regular {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zen-old-mincho-semibold {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.zen-old-mincho-bold {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+.pinyon-script-regular {
+  font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.noto-sans-jp {
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}

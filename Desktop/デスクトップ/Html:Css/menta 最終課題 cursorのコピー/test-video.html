@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-video {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: #000;
+            margin: 0 auto;
+            display: block;
+        }
+        .test-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>動画テスト</h1>
+    <div class="test-video">
+        <video src="main-video.mp4" autoplay muted loop playsinline controls></video>
+    </div>
+    <p>動画が表示されない場合は、ファイルパスまたはファイル形式に問題があります。</p>
+</body>
+</html> 
