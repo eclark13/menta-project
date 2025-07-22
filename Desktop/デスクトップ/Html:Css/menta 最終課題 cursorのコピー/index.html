@@ -37,12 +37,12 @@
     <section class="main-visual">
         <video src="main-video.mp4" autoplay muted loop playsinline preload="auto" poster="img/wedding-01.jpg"></video>
         
-        <!-- モバイルヘッダー -->
+          <!-- モバイルヘッダー -->
         <div class="mobile-header">
           <a href="#top" class="logo-link">
             <h1 class="zen-old-mincho-bold">Serene<br>Wedding</h1>
           </a>
-          <button class="hamburger-menu" id="hamburgerMenu">
+          <button class="hamburger-menu" id="hamburgerMenu" aria-label="メニュー">
             <span></span>
             <span></span>
             <span></span>
@@ -52,14 +52,16 @@
         <!-- モバイルメニューオーバーレイ -->
         <div class="mobile-menu-overlay" id="mobileMenuOverlay">
           <div class="mobile-menu-content">
-            <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+            <a href="#top" class="logo-link">
+              <h1 class="zen-old-mincho-bold">Serene<br>Wedding</h1>
+            </a>
+            <div class="menu-divider"></div>
             <nav class="mobile-nav">
               <ul class="zen-old-mincho-bold">
                 <li><a href="#Pickup">Pickup</a></li>
                 <li><a href="#Plan">Plan</a></li>
                 <li><a href="#Feature">Feature</a></li>
                 <li><a href="#Gallery">Gallery</a></li>
-                <li><a href="#SNS">SNS</a></li>
               </ul>
               <div class="mobile-contact zen-old-mincho-bold">
                 <div class="contact-button">Contact</div>
@@ -75,7 +77,6 @@
             </nav>
           </div>
         </div>
-        
     </section>
     
     <div id="wrapper">

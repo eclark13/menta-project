@@ -209,35 +209,12 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburgerMenu');
   const overlay = document.getElementById('mobileMenuOverlay');
-  const closeBtn = document.getElementById('mobileMenuClose');
-
   if (hamburger && overlay) {
     hamburger.addEventListener('click', function() {
-      const isOpen = overlay.classList.contains('active');
+      this.classList.toggle('active');
       overlay.classList.toggle('active');
-      hamburger.classList.toggle('is-active');
-      document.body.style.overflow = isOpen ? '' : 'hidden';
-    });
-  }
-  if (closeBtn && overlay) {
-    closeBtn.addEventListener('click', function() {
-      overlay.classList.remove('active');
-      hamburger.classList.remove('is-active');
-      document.body.style.overflow = '';
-    });
-  }
-  // オーバーレイの外側クリックで閉じる
-  if (overlay) {
-    overlay.addEventListener('click', function(e) {
-      if (e.target === overlay) {
-        overlay.classList.remove('active');
-        hamburger.classList.remove('is-active');
-        document.body.style.overflow = '';
-      }
+      document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
     });
   }
 });
 
-
-
- 

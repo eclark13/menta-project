@@ -7,16 +7,8 @@
 @use "mixin" as mix;
 
 /*-----------------------
-*　ヘッダー
+*　ヘッダー（PC用サイドバー）
 *-----------------------*/
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: block;
-}
-
 header {
   position: fixed;
   left: 0;
@@ -28,15 +20,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  @include mix.mq(var.$lg) {
-    width: 200px;
-  }
-  
-  @include mix.mq(var.$md) {
-    width: 150px;
-  }
-  
   @include mix.mq(var.$sm) {
     display: none; // モバイル時は非表示
   }
@@ -64,6 +47,13 @@ header {
     margin-left: 0;
     width: 100vw;
     overflow-x: hidden;
+  }
+}
+
+@include mix.mq(var.$md) {
+  #wrapper {
+    margin-left: 0;
+    width: 100vw;
   }
 }
 
@@ -1145,37 +1135,11 @@ main {
 // Feature セクション
 //-------------------------
 .feature {
-  padding: 80px;
+  padding: 80px 10px;
   background-color: #F6F6F6;
   overflow-x: hidden; // 横方向のはみ出し防止
   
-  @include mix.mq(var.$lg) {
-    padding: 80px 70px;
-  }
-  
-  @include mix.mq(var.$lg) {
-    padding: 80px 60px;
-  }
-  
-  @include mix.mq(var.$md) {
-    padding: 80px 40px;
-  }
-  
-  @include mix.mq(var.$md) {
-    padding: 70px 35px;
-  }
-  
-  @include mix.mq(var.$sm) {
-    padding: 65px 30px;
-  }
-  
-  @include mix.mq(var.$sm) {
-    padding: 60px 30px;
-  }
-  
-  @include mix.mq(var.$xs) {
-    padding: 50px 20px;
-  }
+
 
   h2 {
     margin-bottom: 50px;
@@ -1189,62 +1153,15 @@ main {
       @include mix.mq(var.$lg) {
         font-size: 30px;
       }
-      
-      @include mix.mq(var.$lg) {
-        font-size: 28px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 26px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 24px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 22px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 20px;
-      }
-      
-      @include mix.mq(var.$xs) {
-        font-size: 18px;
-      }
+   
     }
     .jp {
       color: #A88657;
       font-size: 14px;
       
-      @include mix.mq(var.$lg) {
-        font-size: 13px;
-      }
+  
       
-      @include mix.mq(var.$lg) {
-        font-size: 12px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 11px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 10px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 9px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 10px;
-      }
-      
-      @include mix.mq(var.$xs) {
-        font-size: 9px;
-      }
+     
     }
   }
 
@@ -1256,51 +1173,25 @@ main {
   padding-bottom: 80px;
   overflow: visible;
   
-  @include mix.mq(var.$lg) {
-    max-width: 880px;
-    margin: 0 auto 75px;
-    padding-bottom: 75px;
-  }
+
   
-  @include mix.mq(var.$lg) {
-    max-width: 840px;
-    margin: 0 auto 70px;
-    padding-bottom: 70px;
-  }
-  
-  @include mix.mq(var.$md) {
+  @include mix.mq(var.$xl) {
     flex-direction: column;
-    gap: 40px;
+    // gap: 40px;
     max-width: 100%;
-    margin: 0 auto 80px;
-    padding-bottom: 80px;
+    margin: 0 auto 0px;
+    padding-bottom: 30px;
     align-items: center;
   }
   
-  @include mix.mq(var.$sm) {
-    flex-direction: column;
-    gap: 30px;
-  }
+
 
   .img-box {
     position: relative;
     max-width: 500px;
     flex-shrink: 0;
     
-    @include mix.mq(var.$lg) {
-      max-width: 460px;
-    }
-    
-    @include mix.mq(var.$md) {
-      max-width: 420px;
-      margin: 0 auto;
-    }
-    
-    @include mix.mq(var.$sm) {
-      width: 100%;
-      max-width: 100%;
-    }
-
+  
     img {
       width: 100%;
       height: 100%;
@@ -1315,24 +1206,15 @@ main {
       background-color: #fff;
       padding: 58px 16px;
       max-width: 500px;
-      @include mix.mq(var.$lg) {
-        right: -380px;
-        max-width: 480px;
-        padding: 55px 16px;
-      }
-      @include mix.mq(var.$lg) {
-        right: -360px;
-        max-width: 460px;
-        padding: 52px 16px;
-      }
-      @include mix.mq(var.$md) {
+
+      @include mix.mq(var.$xl) {
         right: 0;
-        max-width: 420px;
         padding: 50px 16px;
         position: relative;
         bottom: 0;
         margin: 0 auto;
         text-align: center;
+        
       }
       @include mix.mq(var.$sm) {
         width: 100%;
@@ -1382,18 +1264,11 @@ main {
     .img-box .text-box {
       left: -400px; // reverse時は左にズラす
       right: auto;
-      @include mix.mq(var.$lg) {
-        left: -380px;
-        max-width: 480px;
-      }
-      @include mix.mq(var.$lg) {
-        left: -360px;
-        max-width: 460px;
-      }
-      @include mix.mq(var.$md) {
+
+      @include mix.mq(var.$xl) {
         left: 0;
         right: 0;
-        max-width: 420px;
+        
         position: relative;
         bottom: 0;
         margin: 0 auto;
@@ -1409,57 +1284,7 @@ main {
 }
 }
 
-@media screen and (max-width: 1250px) {
-  .feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 90vw;
-    width: 100%;
-    margin: 0 auto 40px;
-    padding-bottom: 40px;
-    background: none;
-    box-shadow: none;
-  }
-  .feature-item .img-box {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  .feature-item .img-box img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-    border-radius: 0;
-  }
-  .feature-item .img-box .text-box {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    background: #fff;
-    padding: 32px 20px 24px 20px;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .feature-item .img-box .text-box .title {
-    color: #b08a5a;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 16px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-  .feature-item .img-box .text-box .text {
-    color: #555;
-    font-size: 15px;
-    line-height: 2;
-    text-align: center;
-    margin-bottom: 0;
-  }
-}
+
 
 //-------------------------
 // Gallery セクション
@@ -2484,109 +2309,96 @@ footer {
 // 共通スタイル
 //-------------------------
 
-a {
-  transition: color 0.2s;
-  text-decoration: none;
-  &:hover {
-    color: #A88657;
-  }
-}
-
-.logo-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-// headerのロゴのみホバーエフェクトを無効化
-.header-inner .logo-link {
-  pointer-events: none;
-}
-
-#navi .social-link a img,
-.sns-icon {
-  transition: opacity 0.2s;
-}
-
-#navi .social-link a:hover img,
-.sns-image:hover .sns-icon {
-  opacity: 0.6;
-}
-
-#navi .nav-contact .contact-button,
-.contact-btn {
-  transition: opacity 0.2s;
-}
-#navi .nav-contact .contact-button:hover,
-.contact-btn:hover {
-  opacity: 0.6;
-}
-
-.mobile-header {
-  z-index: 9999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 60px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-left: 2px solid #e6bfa7;
-  border-right: 2px solid #e6bfa7;
-  padding: 0 24px;
-  box-sizing: border-box;
-}
-.mobile-header .logo-link {
-  font-size: 20px;
-  font-family: 'Zen Old Mincho', serif;
-  color: #222;
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-.hamburger-menu {
+.hamburger {
+  width: 2rem;
+  height: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
+  justify-content: space-between;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 2100;
-  margin-left: auto;
-}
-.hamburger-menu span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #222;
-  margin: 6px 0;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  z-index: 9999;
+  span {
+    height: 2px;
+    width: 100%;
+    background: #000;
+    transition: 0.3s;
+  }
+  &.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(7px);
+  }
+  &.active span:nth-child(2) {
+    opacity: 0;
+  }
+  &.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-7px);
+  }
 }
 
-// --- モバイルメニュー展開時 ---
-.mobile-menu-overlay {
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  &.active {
+    display: flex;
+  }
+}
+
+.mobile-header {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: #fafafa;
-  z-index: 3000;
+  height: 60px;
+  background: #fff !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-sizing: border-box;
+  z-index: 99999 !important;
+}
+.hamburger-menu {
+  display: none !important;
+}
+@media screen and (max-width: 768px) {
+  .mobile-header {
+    display: flex !important;
+  }
+  .hamburger-menu {
+    display: flex !important;
+  }
+}
+
+.mobile-menu-overlay {
+  display: flex;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #fff;
+  z-index: 99999;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
-.mobile-menu-overlay.active {
-  display: flex;
-}
+
 .mobile-menu-content {
   background: #fff;
   width: 90vw;
   max-width: 400px;
+  min-height: 80vh;
   border-radius: 0;
   padding: 48px 24px 32px 24px;
   position: relative;
@@ -2594,140 +2406,25 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-left: 2px solid #e6bfa7;
-  border-right: 2px solid #e6bfa7;
-}
-.mobile-menu-close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  background: none;
-  border: none;
-  width: 36px;
-  height: 36px;
-  font-size: 0;
-  cursor: pointer;
-  z-index: 3100;
-}
-.mobile-menu-close::before, .mobile-menu-close::after {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 17px;
-  width: 20px;
-  height: 2px;
-  background: #333;
-}
-.mobile-menu-close::before {
-  transform: rotate(45deg);
-}
-.mobile-menu-close::after {
-  transform: rotate(-45deg);
-}
-.mobile-nav {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 24px;
-}
-.mobile-nav .logo-link {
-  margin-bottom: 8px;
-  font-size: 22px;
-  font-family: 'Zen Old Mincho', serif;
-  color: #222;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-.mobile-nav .menu-divider {
-  width: 80%;
-  height: 1px;
-  background: #ccc;
-  margin: 12px auto 32px auto;
-}
-.mobile-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 32px 0;
-  width: 100%;
-}
-.mobile-nav ul li {
-  margin-bottom: 24px;
-  text-align: center;
-}
-.mobile-nav ul li:last-child {
-  margin-bottom: 0;
-}
-.mobile-nav ul li a {
-  font-size: 18px;
-  color: #222;
-  letter-spacing: 1px;
-  transition: color 0.2s;
-  font-family: 'Zen Old Mincho', serif;
-  font-weight: 400;
-}
-.mobile-nav ul li a:hover {
-  color: #a88657;
-}
-.mobile-contact {
-  width: 100%;
-  display: flex;
   justify-content: center;
-  margin-bottom: 32px;
+  transform: translateY(-40px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
 }
-.mobile-contact .contact-button {
-  width: 80%;
-  max-width: 260px;
-  background: #b08a5a;
-  color: #fff;
-  font-size: 18px;
-  padding: 12px 0;
-  border: none;
-  border-radius: 4px;
-  text-align: center;
-  font-family: 'Zen Old Mincho', serif;
-  font-weight: 500;
-  cursor: pointer;
-  margin: 0 auto;
-  transition: background 0.2s;
-  box-shadow: none;
-  letter-spacing: 1px;
-}
-.mobile-contact .contact-button:hover {
-  background: #a88657;
-}
-.mobile-social-link {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 8px;
-}
-.mobile-social-link a {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border-radius: 50%;
-}
-.mobile-social-link img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: grayscale(0%) brightness(0.6) sepia(1) hue-rotate(10deg) saturate(2) brightness(1.1);
-  transition: filter 0.2s;
-}
-.mobile-social-link a:hover img {
-  filter: grayscale(0%) brightness(0.4) sepia(1) hue-rotate(10deg) saturate(2) brightness(1.1);
-}
-@media screen and (max-width: 900px) {
-  .mobile-header { display: flex !important; }
-  header { display: none !important; }
+.mobile-menu-overlay.active .mobile-menu-content {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
-  .mobile-header { display: flex !important; }
-  header { display: none !important; }
+  .main-visual {
+    margin-top: 60px;
+  }
 }
 
-
-
+@media screen and (max-width: 768px) {
+  header,
+  #navi {
+    display: none !important;
+  }
+}
