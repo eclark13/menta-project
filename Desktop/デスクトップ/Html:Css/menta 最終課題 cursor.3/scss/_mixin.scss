@@ -1,0 +1,15 @@
+@use "variable" as var;
+@mixin section_padding($pt:100px,$pb:100px,$sm_pt:20px,$sm_pb:20px){
+    padding-top: $pt;
+    padding-bottom: $pb;
+    @include mq(var.$sm){
+        padding-top: $sm_pt;
+        padding-bottom: $sm_pb;
+    }
+    
+}
+@mixin mq($breakpoint) {
+    @media screen and (max-width:$breakpoint) {
+        @content;
+    }
+}
