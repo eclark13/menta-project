@@ -1,14 +1,22 @@
 @charset "UTF-8";
+@use "variable" as var;
+@use "mixin" as mix;
 @use "reset";
 @use "base";
 @use "layout";
-@use "variable" as var;
 @use "component";
-@use "mixin" as mix;
+
 
 /*-----------------------
 *　ヘッダー（PC用サイドバー）
 *-----------------------*/
+
+body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; // ✅ 横スクロール防止
+
+}
 header {
   position: fixed;
   left: 0;
@@ -20,6 +28,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   @include mix.mq(var.$sm) {
     display: none; // モバイル時は非表示
   }
@@ -63,6 +72,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 40px 16px;
   
   @include mix.mq(var.$sm) {
     flex-direction: row;
@@ -78,45 +88,27 @@ header {
 }
 
 h1 {
-  font-size: 18px;
-  letter-spacing: 1px;
-  line-height: 1.2;
+
   text-align: center;
+  color: #333;
   margin-bottom: 20px;
-  margin: 0;
-  
-  @include mix.mq(var.$lg) {
-    font-size: 17px;
-    margin-bottom: 18px;
-  }
-  
-  @include mix.mq(var.$lg) {
-    font-size: 16px;
-    margin-bottom: 16px;
-  }
-  
+
   @include mix.mq(var.$md) {
     font-size: 15px;
     margin-bottom: 14px;
   }
   
-  @include mix.mq(var.$md) {
-    font-size: 14px;
-    margin-bottom: 12px;
+  .top{
+    font-size: 24px;
+    display: block;
+    letter-spacing: 8%;
+    line-height: 100%;
   }
-  
-  @include mix.mq(var.$sm) {
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-  
-  @include mix.mq(var.$sm) {
-    font-size: 16px;
-    margin-bottom: 0;
-  }
-  
-  @include mix.mq(var.$xs) {
-    font-size: 14px;
+  .bottom{
+    font-size: 20px;
+    letter-spacing: 8%;
+    line-height: 100%;
+    display: block;
   }
 }
 
@@ -142,7 +134,7 @@ h1 {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-top: 15px;
+    margin-top: 24px;
     text-align: center;
 
     @include mix.mq(var.$sm) {
@@ -166,8 +158,9 @@ h1 {
 
       a {
         display: block;
-        font-size: 14px;
-        letter-spacing: 1px;
+        font-size: 16px;
+        letter-spacing: 8%;
+        line-height: 175%;
         transition: color 0.3s ease;
         
         @include mix.mq(var.$lg) {
@@ -201,7 +194,7 @@ h1 {
   .nav-contact {
     .contact-button {
       display: inline-block;
-      padding: 10px 50px;
+      padding: 8px 51px;
       font-size: 16px;
       color: #fff;
       cursor: pointer;
@@ -225,7 +218,7 @@ h1 {
   .social-link {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 24px;
 
     @include mix.mq(var.$sm) {
       margin-top: 0;
@@ -257,9 +250,9 @@ h1 {
 }
 
 main {
-  max-width: 1080px;
+  // max-width: 1080px;
   margin: 0 auto;
-  padding: 40px 20px 0 20px;
+  padding: 40px 0px;
   position: relative;
   z-index: 2;
   background: #fff;
@@ -290,35 +283,140 @@ main {
   height: 700px;
   overflow: hidden;
   
-  @include mix.mq(var.$lg) {
-    height: 700px;
-  }
-  
-  @include mix.mq(var.$lg) {
-    height: 700px;
-  }
-  
   @include mix.mq(var.$md) {
     height: 700px;
   }
+}
+
+// モバイルハンバーガーメニュー
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: white;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
   
   @include mix.mq(var.$md) {
-    height: 700px;
+    display: flex;
   }
-  
-  @include mix.mq(var.$sm) {
-    height: 700px;
+}
+
+.mobile-header .logo-link h1 {
+  color: #222;
+  font-size: 18px;
+  margin: 0;
+}
+
+.mobile-header .hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: fixed; // ←追加
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+
+.mobile-header .hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #222;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.mobile-header .hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-header .hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-header .hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+// モバイルメニュー
+.mobile-nav-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  .logo-link {
+    margin-bottom: 20px;
+    
+    h1 {
+      color: #222;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 100px;
+    }
   }
-  
-  @include mix.mq(var.$sm) {
-    height: 700px;
-    margin-bottom: 30px;
-    padding-top: 60px; // モバイルヘッダー分のパディングを追加
+
+  .menu-underline {
+    width: 60px;
+    height: 1px;
+    background: #ccc;
+    margin: 0 auto 30px auto;
   }
-  
-  @include mix.mq(var.$xs) {
-    height: 700px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+
+    li {
+      margin: 20px 0;
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        font-family: 'Zen Old Mincho', serif;
+        font-weight: 500;
+        transition: color 0.2s ease;
+        
+        &:hover {
+          color: #a88657;
+        }
+      }
+    }
   }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.mobile-header.hide-logo .logo-link {
+  display: none;
 }
 
 .main-visual video {
@@ -330,42 +428,13 @@ main {
   object-fit: cover;
   z-index: 1;
   
-  @include mix.mq(var.$lg) {
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  @include mix.mq(var.$lg) {
-    height: 100%;
-    object-fit: cover;
-  }
+
   
   @include mix.mq(var.$md) {
     height: 100%;
     object-fit: cover;
   }
-  
-  @include mix.mq(var.$md) {
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  @include mix.mq(var.$sm) {
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  @include mix.mq(var.$sm) {
-    top: 60px; // モバイルヘッダーの高さ分下にずらす
-    height: calc(700px - 60px); // 700pxからヘッダー分を引く
-    object-fit: cover;
-  }
-  
-  @include mix.mq(var.$xs) {
-    top: 60px;
-    height: calc(700px - 60px); // 700pxからヘッダー分を引く
-    object-fit: cover;
-  }
+
 }
 
 
@@ -373,7 +442,6 @@ main {
 .lead-text {
   position: relative;
   text-align: center;
-  margin-top: 50px;
   padding-top: 50px;
   margin-bottom: 40px;
   
@@ -390,12 +458,14 @@ main {
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
-    height: 40px; 
+    height: 50px; 
     background-color: #000;
   }
 
   .title{
     font-size: 24px;
+    letter-spacing: 1.6px;
+    line-height: 175%;
     margin-bottom: 24px;
     
     @include mix.mq(var.$sm) {
@@ -409,7 +479,8 @@ main {
 
   .text {
     font-size: 16px;
-    line-height: 2;
+    line-height: 175%;
+    letter-spacing: 1.4px;
     margin-bottom: 10px;
     
     @include mix.mq(var.$sm) {
@@ -426,10 +497,9 @@ main {
 // Pickup セクション
 //-------------------------
 .pickup {
-  margin-bottom: 120px;
-  text-align: center;
+  margin-bottom: 80px;
   background-color: #F6F6F6;
-  padding: 80px 35px;
+  padding: 80px 35px 100px;
   
   @include mix.mq(var.$lg) {
     padding: 100px 50px;
@@ -445,66 +515,35 @@ main {
   }
 
   h2 {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     text-align: center;
+    letter-spacing: 1.4px;
     .en {
       display: block;
       color: #A88657;
-      font-size: 32px;
-      line-height: 1.4;
+      font-size: 36px;
+      line-height: 100%;
+      letter-spacing: 8%;
       
       @include mix.mq(var.$lg) {
         font-size: 30px;
       }
       
-      @include mix.mq(var.$lg) {
-        font-size: 28px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 26px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 24px;
-      }
+     
       
       @include mix.mq(var.$sm) {
         font-size: 22px;
       }
       
-      @include mix.mq(var.$sm) {
-        font-size: 20px;
-      }
-      
+  
       @include mix.mq(var.$xs) {
         font-size: 18px;
       }
     }
     .jp {
       color: #A88657;
-      font-size: 14px;
-      
-      @include mix.mq(var.$lg) {
-        font-size: 13px;
-      }
-      
-      @include mix.mq(var.$lg) {
-        font-size: 12px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 11px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 10px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 9px;
-      }
-      
+      font-size: 16px;
+    
       @include mix.mq(var.$sm) {
         font-size: 10px;
       }
@@ -523,8 +562,8 @@ main {
     margin: 0 auto;
     height: 320px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    // align-items: center;
+    // justify-content: center;
     overflow: visible;
     
     @include mix.mq(var.$sm) {
@@ -537,7 +576,7 @@ main {
   .pickup-slider-simple {
     position: relative;
     display: flex;
-    align-items: center;
+    // align-items: center;
     max-width: 1100px;
     margin: 0 auto;
     
@@ -545,118 +584,11 @@ main {
       gap: 12px;
     }
     
-    .pickup-nav.prev {
-      position: absolute;
-      left: -20px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      background: var(--background-white);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      font-size: 20px;
-      color: #A88657;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: background 0.2s, color 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      @include mix.mq(var.$lg) {
-        width: 38px;
-        height: 38px;
-        font-size: 18px;
-        left: -19px;
-      }
-      
-      @include mix.mq(var.$lg) {
-        width: 36px;
-        height: 36px;
-        font-size: 17px;
-        left: -18px;
-      }
-      
-      @include mix.mq(var.$md) {
-        width: 34px;
-        height: 34px;
-        font-size: 16px;
-        left: -17px;
-      }
-      
-      @include mix.mq(var.$md) {
-        width: 32px;
-        height: 32px;
-        font-size: 15px;
-        left: -16px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-        left: -15px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-        left: -18px;
-      }
-      
-      @include mix.mq(var.$xs) {
-        width: 32px;
-        height: 32px;
-        font-size: 14px;
-        left: -16px;
-      }
-      
-      &:hover {
-        background: #A88657;
-        color: #fff;
-        opacity: 1;
-      }
-    }
-    .pickup-nav.next {
-      position: absolute;
-      right: -18px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      background: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      font-size: 22px;
-      color: #A88657;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: background 0.2s, color 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      @include mix.mq(var.$sm) {
-        right: -18px;
-        left: auto;
-      }
-      
-      &:hover {
-        background: #A88657;
-        color: #fff;
-        opacity: 1;
-      }
-    }
+
     .pickup-track {
       display: flex;
       overflow-x: auto;
-      gap: 24px;
+      gap: 35px;
       scroll-snap-type: x mandatory;
       padding-bottom: 8px;
       -webkit-overflow-scrolling: touch;
@@ -667,27 +599,27 @@ main {
     }
     .pickup-slide {
       flex: 0 0 calc((100% - 48px) / 3);
-      max-width: 340px;
+      max-width: 310px;
       min-width: 260px;
       scroll-snap-align: start;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      padding: 24px 16px;
+      background: transparent;
+      box-shadow: none;
+      padding: 24px 0;
       border-radius: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      margin-bottom: 40px;
       
         @include mix.mq(var.$lg) {
-    flex: 0 0 calc((100% - 48px) / 3);
-        max-width: 350px;
-    min-width: 280px;
-  }
-  @include mix.mq(var.$md) {
-    flex: 0 0 calc((100% - 48px) / 3);
-        max-width: 350px;
-    min-width: 280px;
-  }
+          flex: 0 0 calc((100% - 48px) / 3);
+          max-width: 350px;
+          min-width: 280px;
+        }
+        @include mix.mq(var.$md) {
+          flex: 0 0 calc((100% - 48px) / 3);
+          max-width: 350px;
+          min-width: 280px;
+        }
       @include mix.mq(var.$md) {
         flex: 0 0 calc((100% - 48px) / 3);
         max-width: 280px;
@@ -721,13 +653,13 @@ main {
         height: 180px;
         object-fit: cover;
         border-radius: 0;
-        margin-bottom: 16px;
-          @include mix.mq(var.$lg) {
+        margin-bottom: 15px;
+        @include mix.mq(var.$lg) {
           height: 180px;
-  }
-  @include mix.mq(var.$md) {
+        }
+        @include mix.mq(var.$md) {
           height: 180px;
-  }
+        }
         @include mix.mq(var.$md) {
           height: 140px;
         }
@@ -736,22 +668,18 @@ main {
         }
       }
       .title {
+        text-align: left;
         color: #A88657;
-        font-size: 17px;
-        margin-bottom: 8px;
-        text-align: center;
+        font-size: 18px;
+        letter-spacing: 1.6px;
+        margin-bottom: 0px;
           @include mix.mq(var.$lg) {
           font-size: 17px;
   }
   @include mix.mq(var.$md) {
           font-size: 17px;
   }
-        @include mix.mq(var.$md) {
-          font-size: 14px;
-        }
-        @include mix.mq(var.$sm) {
-          font-size: 13px;
-        }
+
         @include mix.mq(var.$sm) {
           font-size: 15px;
         }
@@ -760,21 +688,12 @@ main {
         }
       }
       .text {
-        font-size: 15px;
-        color: #555;
+        font-size: 16px;
+        color: #333;
         text-align: left;
-        @include mix.mq(var.$lg) {
-          font-size: 15px;
-        }
-        @include mix.mq(var.$md) {
-          font-size: 15px;
-        }
-        @include mix.mq(var.$md) {
-          font-size: 12px;
-        }
-        @include mix.mq(var.$sm) {
-          font-size: 11px;
-        }
+        letter-spacing: 1.6px;
+        line-height: 1.3;
+       
         @include mix.mq(var.$sm) {
           font-size: 13px;
         }
@@ -782,14 +701,13 @@ main {
           font-size: 12px;
         }
       }
-      &:hover {
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      }
+
     }
     .pickup-dots {
       display: flex;
       justify-content: center;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
       margin-top: 18px;
       position: absolute;
       left: 0;
@@ -807,31 +725,36 @@ main {
         border: none;
         background: #ccc;
         cursor: pointer;
-        transition: background 0.2s, transform 0.2s;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+        min-width: 10px;
+        min-height: 10px;
+        max-width: 10px;
+        max-height: 10px;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+        font-size: 0;
+        
         &.active {
           background: #A88657;
-          transform: scale(1.3);
         }
       }
     }
   }
+
   
   // スライドアニメーション効果
   .pickup-slide {
-    transition: all 0.3s ease;
     transform: scale(1);
     opacity: 1;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
   
   .pickup-slide.active {
     z-index: 3;
   }
   
-  .pickup-slide.prev, .pickup-slide.next {
-    opacity: 0.8;
-    z-index: 2;
-  }
+
   
   .pickup-slide.hide {
     opacity: 0.6;
@@ -882,23 +805,9 @@ main {
       color: #A88657;
       font-family: 'Pinyon Script', cursive;
       font-size: 36px;
-      line-height: 1.4;
+      line-height: 1.2;
       
-      @include mix.mq(var.$lg) {
-        font-size: 32px;
-      }
-      
-      @include mix.mq(var.$lg) {
-        font-size: 30px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 28px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 26px;
-      }
+     
       
       @include mix.mq(var.$sm) {
         font-size: 24px;
@@ -915,27 +824,8 @@ main {
     .jp {
       color: #A88657;
       font-size: 16px;
-      
-      @include mix.mq(var.$lg) {
-        font-size: 14px;
-      }
-      
-      @include mix.mq(var.$lg) {
-        font-size: 14px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 13px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 13px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 12px;
-      }
-      
+  
+ 
       @include mix.mq(var.$sm) {
         font-size: 12px;
       }
@@ -1003,7 +893,7 @@ main {
       letter-spacing: 1.4px;
       position: relative;
       padding: 10px 40px;
-      font-size: 14px;
+      font-size: 18px;
       color: #BBBBBB;
       cursor: pointer;
       border-bottom: solid 1px #BBBBBB;
@@ -1089,7 +979,7 @@ main {
     img {
       width: 100%;
       height: auto;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
      object-fit: cover;
     }
 
@@ -1099,16 +989,17 @@ main {
       letter-spacing: 2px;
       border-bottom: solid 1px #A88657;
       padding-bottom: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .text{
       text-align: left;
-      font-size: 16px;
-      letter-spacing: 2px;
-      margin-bottom: 40px;
+      font-size: 15.5px;
+      letter-spacing: 1.8px;
+      margin-bottom: 10px;
     }
 
     .btn {
+      margin-top: 28px;
       padding: 16px 83px;
       background-color: #A88657;
       color: #fff;
@@ -1135,20 +1026,25 @@ main {
 // Feature セクション
 //-------------------------
 .feature {
-  padding: 80px 10px;
+  padding-top: 80px;
   background-color: #F6F6F6;
   overflow-x: hidden; // 横方向のはみ出し防止
+  @include mix.mq(var.$xl) {
+    padding-bottom: 40px;
+  }
   
 
 
   h2 {
-    margin-bottom: 50px;
+    margin-top: -5px;
     text-align: center;
+    margin-bottom: 40px;
     .en {
       display: block;
       color: #A88657;
-      font-size: 32px;
-      line-height: 1.4;
+      font-size: 36px;
+      line-height: 1;
+      letter-spacing: 1.6px;
       
       @include mix.mq(var.$lg) {
         font-size: 30px;
@@ -1157,8 +1053,8 @@ main {
     }
     .jp {
       color: #A88657;
-      font-size: 14px;
-      
+      font-size: 16px;
+      letter-spacing: 1.6px;
   
       
      
@@ -1172,12 +1068,13 @@ main {
   margin: 0 auto 80px;
   padding-bottom: 80px;
   overflow: visible;
-  
+  &:last-child {
+    padding-bottom: 0;
+  }
 
   
   @include mix.mq(var.$xl) {
     flex-direction: column;
-    // gap: 40px;
     max-width: 100%;
     margin: 0 auto 0px;
     padding-bottom: 30px;
@@ -1201,11 +1098,12 @@ main {
 
     .text-box {
       position: absolute;
-      bottom: -50px;
-      right: -400px;
+      bottom: -60px;
+      right: -420px;
       background-color: #fff;
       padding: 58px 16px;
       max-width: 500px;
+      max-height: 280px;
 
       @include mix.mq(var.$xl) {
         right: 0;
@@ -1229,6 +1127,8 @@ main {
         font-size: 20px;
         letter-spacing: 2px;
         text-align: center;
+        padding-bottom: 20px;
+        
         @include mix.mq(var.$lg) {
           font-size: 18px;
         }
@@ -1238,6 +1138,8 @@ main {
       }
       .text{
         font-size: 16px;
+line-height: 175%;
+letter-spacing: 1.2px;
         @include mix.mq(var.$lg) {
           font-size: 15px;
         }
@@ -1262,8 +1164,11 @@ main {
     }
 
     .img-box .text-box {
-      left: -400px; // reverse時は左にズラす
+      left: -420px; // reverse時は左にズラす
       right: auto;
+      padding: 58px 16px;
+      max-width: 500px;
+      bottom: -40px;
 
       @include mix.mq(var.$xl) {
         left: 0;
@@ -1289,309 +1194,230 @@ main {
 //-------------------------
 // Gallery セクション
 //-------------------------
-.gallery {
-  text-align: center;
-  padding: 80px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  @include mix.mq(var.$lg) {
-    padding: 80px 0;
-  }
-  
-  @include mix.mq(var.$md) {
-    padding: 70px 0;
-  }
-  
-  @include mix.mq(var.$sm) {
-    padding: 50px 0;
-  }
-  
-  @include mix.mq(var.$xs) {
-    padding: 40px 0;
-  }
 
+#Gallery{
+  padding: 80px 0;
   h2 {
-    margin-bottom: 40px;
+    margin-top: -5px;
     text-align: center;
-    .en{
+    margin-bottom: 40px;
+    .en {
       display: block;
       color: #A88657;
       font-size: 36px;
-      line-height: 1.4;
+      line-height: 1;
+      letter-spacing: 1.6px;
+      
+      @include mix.mq(var.$lg) {
+        font-size: 30px;
+      }
+   
     }
-    .jp{
+    .jp {
       color: #A88657;
       font-size: 16px;
+      letter-spacing: 1.6px;
+  
+      
+     
     }
   }
 
-  .photo-animate-wrap img {
-    transform: scale(1); // 通常サイズ
-  }
-  
-  .photo-animate-border {
-    opacity: 0; // 枠線は非表示
-    transform: scale(1.04); // 少し大きめに初期設定
-  }
+}
 
-  .photo-animate-wrap:hover img {
-    transform: scale(1.04); // 画像を4%拡大
-  }
-  
-  .photo-animate-wrap:hover .photo-animate-border {
-    opacity: 1; // 枠線を表示
-    transform: scale(1.04); // 枠線も同じ比率で拡大
-  }
 
-  // Gallery photo animation (旅フォト風・ホバー時)
+
 .photo-animate-wrap {
   position: relative;
-  display: inline-block;
-  overflow: visible;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .photo-animate-border {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border: 12px solid rgba(255, 255, 255, 0.663);
+    box-sizing: border-box;
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(1px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  }
+
+  &:hover .photo-animate-border {
+    opacity: 1;
+  }
 }
 
-.photo-animate-wrap img {
-  display: block;
+
+
+
+.gallery-box {
   width: 100%;
-  height: 100%;
-  border-radius: 0;
-  transition: 
-    transform 0.5s cubic-bezier(.4, .7, .4, 1),
-    box-shadow 0.5s cubic-bezier(.4, .7, .4, 1);
-}
+  max-width: 920px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0px;
+    box-sizing: border-box; // ✅ 追加
 
-.photo-animate-border {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  border-radius: 0;
-  border: 12px solid rgba(255, 255, 255, 0.663);
-  box-sizing: border-box;
-  opacity: 0;
-  transform: scale(1.04);
-  filter: blur(1px);
-  transition: 
-    opacity 0.5s cubic-bezier(.4, .7, .4, 1),
-    transform 0.5s cubic-bezier(.4, .7, .4, 1);
-}
-
-.photo-animate-wrap:hover img {
-  transform: scale(1.04);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
-}
-
-.photo-animate-wrap:hover .photo-animate-border {
-  opacity: 1;
-  transform: scale(1.04);
 }
 
 .gallery-grid {
-  position: relative;
-  width: 920px;
-  height: 620px;
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 305fr 16fr 205fr 16fr 205fr 16fr 157fr;
-  grid-template-rows: 153fr 16fr 282fr 32fr 16fr 16fr;
-  gap: 0;
-  overflow: visible;
-  
-  @include mix.mq(var.$lg) {
-    width: 90%;
-    max-width: 800px;
-    height: auto;
-    aspect-ratio: 920 / 620;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  @include mix.mq(var.$xl) {
+    padding: 3%;
   }
-  
-  @include mix.mq(var.$lg) {
-    width: 85%;
-    max-width: 750px;
-    aspect-ratio: 920 / 620;
+
+  .row {
+    display: flex;
+    gap: 12px;
   }
-  
-  @include mix.mq(var.$md) {
-    width: 80%;
-    max-width: 700px;
-    aspect-ratio: 920 / 620;
+
+  .row1 {
+    aspect-ratio: 920 / 153;
+    .photo-animate-wrap:nth-child(1) { flex: 305; }
+    .photo-animate-wrap:nth-child(2) { flex: 205; }
+    .photo-animate-wrap:nth-child(3) { flex: 205; }
+    .photo-animate-wrap:nth-child(4) { flex: 157; }
   }
-  
-  @include mix.mq(var.$md) {
-    width: 75%;
-    max-width: 650px;
-    aspect-ratio: 920 / 620;
+
+  .row2 {
+    aspect-ratio: 920 / 282;
+    .photo-animate-wrap:nth-child(1) { flex: 350; }
+    .photo-animate-wrap:nth-child(2) { flex: 190; }
+    .photo-animate-wrap:nth-child(3) { flex: 350; }
   }
-  
-  @include mix.mq(var.$sm) {
-    width: 70%;
-    max-width: 600px;
-    aspect-ratio: 920 / 620;
-  }
-  
-  @include mix.mq(var.$sm) {
-    width: 90%;
-    max-width: 100%;
-    aspect-ratio: 920 / 620;
-  }
-  
-  @include mix.mq(var.$xs) {
-    width: 95%;
-    max-width: 100%;
-    aspect-ratio: 920 / 620;
+
+  .row3 {
+    aspect-ratio: 920 / 153;
+    .photo-animate-wrap:nth-child(1) { flex: 265; }
+    .photo-animate-wrap:nth-child(2) { flex: 393; }
+    .photo-animate-wrap:nth-child(3) { flex: 230; }
   }
 }
 
-.gallery-grid .photo-animate-wrap {
+.photo-animate-wrap {
   position: relative;
   overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  }
 }
 
-.gallery-grid .photo-animate-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* 小画面でもレイアウトを崩さず縮小（縮尺維持） */
+@media (max-width: 920px) {
+  .gallery-box {
+    padding: 0px;
+  }
+
+  .gallery-grid .row {
+    flex-wrap: nowrap;
+  }
+
+  .gallery-grid .row1,
+  .gallery-grid .row2,
+  .gallery-grid .row3 {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .photo-animate-wrap {
+    height: auto;
+  }
 }
 
-/* 元のレイアウトを完璧に再現したGrid配置 */
-/* 1行目 - 隙間16pxを正確に再現 */
-.gallery-grid .photo-animate-wrap:nth-child(1) {
-  grid-area: 1 / 1 / 2 / 2; /* top: 0, left: 0, width: 305px, height: 153px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(2) {
-  grid-area: 1 / 3 / 2 / 4; /* top: 0, left: 305px + 16px, width: 205px, height: 153px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(3) {
-  grid-area: 1 / 5 / 2 / 6; /* top: 0, left: 305px + 205px + 32px, width: 205px, height: 153px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(4) {
-  grid-area: 1 / 7 / 2 / 8; /* top: 0, left: 305px + 205px + 205px + 48px, width: 157px, height: 153px */
-}
-
-/* 2行目 - 隙間16pxを正確に再現 */
-.gallery-grid .photo-animate-wrap:nth-child(5) {
-  grid-area: 3 / 1 / 6 / 2; /* top: 153px + 16px, left: 0, width: 350px, height: 282px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(6) {
-  grid-area: 3 / 3 / 6 / 4; /* top: 153px + 16px, left: 350px + 16px, width: 190px, height: 282px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(7) {
-  grid-area: 3 / 5 / 6 / 8; /* top: 153px + 16px, left: 350px + 190px + 32px, width: 350px, height: 282px */
-}
-
-/* 3行目 - 隙間16pxと32pxを正確に再現 */
-.gallery-grid .photo-animate-wrap:nth-child(8) {
-  grid-area: 8 / 1 / 9 / 2; /* top: 153px + 282px + 32px, left: 0, width: 265px, height: 153px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(9) {
-  grid-area: 8 / 3 / 9 / 6; /* top: 153px + 282px + 32px, left: 265px + 16px, width: 393px, height: 153px */
-}
-
-.gallery-grid .photo-animate-wrap:nth-child(10) {
-  grid-area: 8 / 7 / 9 / 8; /* top: 153px + 282px + 32px, left: 265px + 393px + 32px, width: 230px, height: 153px */
-}
-}
-
-//-------------------------
-// モーダル
-//-------------------------
-.modal-overlay {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  
+
   &.active {
     display: flex;
-    opacity: 1;
   }
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
 }
 
 .modal-content {
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  background: #fff;
-  border-radius: 0;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  transform: scale(0.8);
-  transition: transform 0.3s ease;
-  margin: auto;
-  
-  .modal-overlay.active & {
-    transform: scale(1);
-  }
+  max-width: 90%;
+  max-height: 90%;
+  z-index: 10000;
 }
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 38px;
-  height: 38px;
-  background: #FFFFFF;
+  top: -40px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 50%;
-  font-size: 28px;
-  color: #111;
+  font-size: 24px;
   cursor: pointer;
-  z-index: 999;
-  transition: background 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  transition: background 0.3s ease;
+
   &:hover {
-    background: #f8f8f8;
+    background: rgba(255, 255, 255, 1);
   }
 }
 
-.modal-image-container {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  img {
-    width: 100%;
-    height: auto;
-    max-height: 80vh;
-    object-fit: contain;
-    display: block;
-  }
-  
-  .photo-animate-border {
-    position: absolute;
-    inset: 0;
-    border: 12px solid rgba(255, 255, 255, 0.663);
-    box-sizing: border-box;
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(1px);
-  }
+.modal-image {
+  width: 70%;
+  height: 70vh;
+  max-width: 70vw;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
+
+
+
+  
+
+
 
 //-------------------------
 // Contact
@@ -1607,25 +1433,8 @@ main {
   max-width: 1080px;
   margin: 0 auto;
   
-  @include mix.mq(var.$lg) {
-    height: 280px;
-    padding: 70px 35px 110px 35px;
-  }
   
-  @include mix.mq(var.$lg) {
-    height: 260px;
-    padding: 65px 30px 100px 30px;
-  }
-  
-  @include mix.mq(var.$md) {
-    height: 240px;
-    padding: 60px 25px 90px 25px;
-  }
-  
-  @include mix.mq(var.$md) {
-    height: 220px;
-    padding: 55px 20px 85px 20px;
-  }
+
   
   @include mix.mq(var.$sm) {
     height: 200px;
@@ -1649,25 +1458,7 @@ main {
   margin: 0 auto;
     text-align: center;
     
-    @include mix.mq(var.$lg) {
-      max-width: 880px;
-    }
     
-    @include mix.mq(var.$lg) {
-      max-width: 840px;
-    }
-    
-    @include mix.mq(var.$md) {
-      max-width: 800px;
-    }
-    
-    @include mix.mq(var.$md) {
-      max-width: 750px;
-    }
-    
-    @include mix.mq(var.$sm) {
-      max-width: 700px;
-    }
     
     @include mix.mq(var.$sm) {
       max-width: 100%;
@@ -1677,26 +1468,7 @@ main {
     display: block;
     font-size: 24px;
       line-height: 1.4;
-      
-      @include mix.mq(var.$lg) {
-        font-size: 22px;
-      }
-      
-      @include mix.mq(var.$lg) {
-        font-size: 20px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 18px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 17px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 16px;
-      }
+  
       
       @include mix.mq(var.$sm) {
         font-size: 16px;
@@ -1712,30 +1484,7 @@ main {
     font-size: 16px;
     margin-bottom: 24px;
       
-      @include mix.mq(var.$lg) {
-        font-size: 15px;
-        margin-bottom: 22px;
-      }
-      
-      @include mix.mq(var.$lg) {
-        font-size: 14px;
-        margin-bottom: 20px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 13px;
-        margin-bottom: 18px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 12px;
-        margin-bottom: 16px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 11px;
-        margin-bottom: 14px;
-      }
+ 
       
       @include mix.mq(var.$sm) {
         font-size: 12px;
@@ -1756,25 +1505,6 @@ main {
   margin: 0 auto;
   align-items: center;
   
-    @include mix.mq(var.$lg) {
-      max-width: 880px;
-    }
-    
-    @include mix.mq(var.$lg) {
-      max-width: 840px;
-    }
-    
-    @include mix.mq(var.$md) {
-      max-width: 800px;
-    }
-    
-    @include mix.mq(var.$md) {
-      max-width: 750px;
-    }
-    
-    @include mix.mq(var.$sm) {
-      max-width: 700px;
-    }
     
     @include mix.mq(var.$sm) {
       max-width: 100%;
@@ -1806,25 +1536,8 @@ main {
         line-height: 1.4;
         margin-bottom: 8px;
         
-        @include mix.mq(var.$lg) {
-          font-size: 22px;
-        }
+    
         
-        @include mix.mq(var.$lg) {
-          font-size: 20px;
-        }
-        
-        @include mix.mq(var.$md) {
-          font-size: 18px;
-        }
-        
-        @include mix.mq(var.$md) {
-          font-size: 17px;
-        }
-        
-        @include mix.mq(var.$sm) {
-          font-size: 16px;
-        }
         
         @include mix.mq(var.$sm) {
           font-size: 16px;
@@ -1839,25 +1552,7 @@ main {
         display: block;
         font-size: 16px;
         
-        @include mix.mq(var.$lg) {
-          font-size: 15px;
-        }
-        
-        @include mix.mq(var.$lg) {
-          font-size: 16px; // 767pxと同じサイズに統一
-        }
-        
-        @include mix.mq(var.$md) {
-          font-size: 16px; // 767pxと同じサイズに統一
-        }
-        
-        @include mix.mq(var.$md) {
-          font-size: 12px;
-        }
-        
-        @include mix.mq(var.$sm) {
-          font-size: 11px;
-        }
+   
         
         @include mix.mq(var.$sm) {
           font-size: 12px;
@@ -1875,27 +1570,7 @@ main {
   font-size: 16px;
   letter-spacing: 8%;
   line-height: 175%;
-  
-    @include mix.mq(var.$lg) {
-      font-size: 15px;
-    }
-    
-    @include mix.mq(var.$lg) {
-      font-size: 16px; // 767pxと同じサイズに統一
-    }
-    
-    @include mix.mq(var.$md) {
-      font-size: 16px; // 767pxと同じサイズに統一
-    }
-    
-    @include mix.mq(var.$md) {
-      font-size: 12px;
-    }
-    
-    @include mix.mq(var.$sm) {
-      font-size: 11px;
-    }
-    
+
     @include mix.mq(var.$sm) {
       font-size: 12px;
     }
@@ -1910,8 +1585,9 @@ main {
   }
   
  .contact-btn {
+  font-size: 20px;
   background-color: #fff;
-  padding: 16px 112.5px;
+  padding: 16px 120px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -1919,25 +1595,7 @@ main {
     color: #000;
     display: inline-block;
     
-    @include mix.mq(var.$lg) {
-      padding: 15px 100px;
-    }
-    
-    @include mix.mq(var.$lg) {
-      padding: 16px 112.5px; // 767pxと同じサイズに統一
-    }
-    
-    @include mix.mq(var.$md) {
-      padding: 16px 112.5px; // 767pxと同じサイズに統一
-    }
-    
-    @include mix.mq(var.$md) {
-      padding: 12px 70px;
-    }
-    
-    @include mix.mq(var.$sm) {
-      padding: 11px 60px;
-    }
+
     
     @include mix.mq(var.$sm) {
       padding: 12px 60px;
@@ -1957,28 +1615,10 @@ main {
 // SNSセクション
 //-------------------------
 .sns {
-  padding: 80px 40px 100px 40px;
+padding-top: 24px;
   text-align: center;
   
-  @include mix.mq(var.$lg) {
-    padding: 70px 35px 90px 35px;
-  }
-  
-  @include mix.mq(var.$lg) {
-    padding: 60px 30px 80px 30px;
-  }
-  
-  @include mix.mq(var.$md) {
-    padding: 50px 25px 70px 25px;
-  }
-  
-  @include mix.mq(var.$md) {
-    padding: 45px 20px 65px 20px;
-  }
-  
-  @include mix.mq(var.$sm) {
-    padding: 40px 15px 60px 15px;
-  }
+ 
   
   @include mix.mq(var.$sm) {
     padding: 50px 20px 70px 20px;
@@ -1988,25 +1628,11 @@ main {
     padding: 40px 15px 60px 15px;
   }
   
-  h2 {
-    margin-bottom: 40px;
-    text-align: center;
-    .en {
-      display: block;
-      color: #A88657;
-      font-size: 36px;
-      line-height: 1.4;
-    }
-    .jp {
-      color: #A88657;
-      font-size: 16px;
-    }
-  }
-  
+
   .sns-content {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
     max-width: 1080px;
     margin: 0 auto;
     
@@ -2036,7 +1662,7 @@ main {
       
       img {
         width: 100%;
-        height: 300px;
+        height: 280px;
         object-fit: cover;
         display: block;
         
@@ -2055,7 +1681,7 @@ main {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.2);
         transition: background 0.3s ease;
         
         &:hover {
@@ -2063,8 +1689,8 @@ main {
         }
         
         .sns-icon {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
           filter: brightness(0) invert(1);
           
           @include mix.mq(var.$sm) {
@@ -2093,36 +1719,13 @@ main {
 // Footer
 //-------------------------
 footer {
-  padding: 40px 20px;
   text-align: center;
   max-width: 920px;
   margin: 0 auto;
   overflow-x: hidden; // 横方向のはみ出し防止
   
-  @include mix.mq(var.$lg) {
-    max-width: 880px;
-    padding: 40px 20px;
-  }
-  
-  @include mix.mq(var.$lg) {
-    max-width: 840px;
-    padding: 40px 20px;
-  }
-  
-  @include mix.mq(var.$md) {
-    max-width: 920px;
-    padding: 40px 20px;
-  }
-  
-  @include mix.mq(var.$md) {
-    max-width: 920px;
-    padding: 35px 15px;
-  }
-  
-  @include mix.mq(var.$sm) {
-    max-width: 920px;
-    padding: 30px 15px;
-  }
+
+
   
   @include mix.mq(var.$sm) {
     max-width: 100%;
@@ -2158,9 +1761,8 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 30px;
+    border-bottom: 1px solid #BBBBBB;
+    padding-bottom: 20px;
     
     @include mix.mq(var.$sm) {
       padding: 0 10px;
@@ -2177,23 +1779,8 @@ footer {
     h3 {
       font-size: 24px;
       color: #333333;
-      margin: 0;
-      
-      @include mix.mq(var.$lg) {
-        font-size: 22px;
-      }
-      
-      @include mix.mq(var.$md) {
-        font-size: 20px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 18px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 18px;
-      }
+      letter-spacing: 1.6px;
+    
       
       @include mix.mq(var.$xs) {
         font-size: 16px;
@@ -2207,19 +1794,9 @@ footer {
       padding: 0;
       margin: 0;
       display: flex;
-      gap: 30px;
+      gap: 33px;
       
-      @include mix.mq(var.$lg) {
-        gap: 25px;
-      }
       
-      @include mix.mq(var.$md) {
-        gap: 20px;
-      }
-      
-      @include mix.mq(var.$sm) {
-        gap: 18px;
-      }
       
       @include mix.mq(var.$sm) {
         gap: 20px;
@@ -2235,18 +1812,7 @@ footer {
 
       li {
         font-size: 16px;
-        
-        @include mix.mq(var.$lg) {
-          font-size: 15px;
-        }
-        
-        @include mix.mq(var.$md) {
-          font-size: 14px;
-        }
-        
-        @include mix.mq(var.$sm) {
-          font-size: 13px;
-        }
+       
         
         @include mix.mq(var.$sm) {
           font-size: 14px;
@@ -2274,24 +1840,10 @@ footer {
       padding: 24px 0 0px 0;
       font-size: 14px;
       color: #666;
-      letter-spacing: 8%;
+      letter-spacing: 1.4px;
       line-height: 150%;
       
-      @include mix.mq(var.$lg) {
-        font-size: 13px;
-        padding: 20px 0 0px 0;
-      }
-      
-      @include mix.mq(var.$md) {
-    font-size: 12px;
-        padding: 18px 0 0px 0;
-      }
-      
-      @include mix.mq(var.$sm) {
-        font-size: 11px;
-        padding: 16px 0 0px 0;
-      }
-      
+    
       @include mix.mq(var.$sm) {
         font-size: 12px;
         padding: 15px 0 0px 0;
@@ -2305,153 +1857,18 @@ footer {
   }
 }
 
-//-------------------------
-// 共通スタイル
-//-------------------------
 
-.hamburger {
-  width: 2rem;
-  height: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 9999;
-  span {
-    height: 2px;
-    width: 100%;
-    background: #000;
-    transition: 0.3s;
-  }
-  &.active span:nth-child(1) {
-    transform: rotate(45deg) translateY(7px);
-  }
-  &.active span:nth-child(2) {
-    opacity: 0;
-  }
-  &.active span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-7px);
-  }
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: #fff;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9998;
-  &.active {
-    display: flex;
-  }
-}
-
-.mobile-header {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 60px;
-  background: #fff !important;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  box-sizing: border-box;
-  z-index: 99999 !important;
-}
-.hamburger-menu {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 2100;
-  span {
-    display: block;
-    width: 28px;
-    height: 3px;
-    background: #000;
-    margin: 6px 0;
-    border-radius: 2px;
-    transition: all 0.3s cubic-bezier(.4,0,.2,1);
-  }
-  &.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  &.active span:nth-child(2) {
-    opacity: 0;
-  }
-  &.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-}
-@media screen and (max-width: 768px) {
-  .mobile-header {
-    display: flex !important;
-  }
-  .hamburger-menu {
-    display: flex !important;
-  }
-}
-
-.mobile-menu-overlay {
-  display: flex;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: #fff;
-  z-index: 99999;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  &.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-.mobile-menu-content {
-  background: #fff;
-  width: 90vw;
-  max-width: 400px;
-  min-height: 80vh;
-  border-radius: 0;
-  padding: 48px 24px 32px 24px;
-  position: relative;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-40px);
-  opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.mobile-menu-overlay.active .mobile-menu-content {
-  transform: translateY(0);
-  opacity: 1;
-}
 
 @media screen and (max-width: 768px) {
-  .main-visual {
-    margin-top: 60px;
+
+  header {
+    display: none ; // モバイル時はサイドバーを非表示
   }
+  #wrapper {
+    margin-left: 0 ;
+    width: 100vw ;
+  }
+  
+ 
 }
 
-@media screen and (max-width: 768px) {
-  header,
-  #navi {
-    display: none !important;
-  }
-}

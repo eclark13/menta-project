@@ -88,8 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!slider) return;
   const track = slider.querySelector('.pickup-track');
   const slides = Array.from(slider.querySelectorAll('.pickup-slide'));
-  const prevBtn = slider.querySelector('.pickup-nav.prev');
-  const nextBtn = slider.querySelector('.pickup-nav.next');
   const dotsContainer = slider.querySelector('.pickup-dots');
 
   // 3枚表示分の幅を計算
@@ -101,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ドット生成
   const visibleCount = 3;
-  const dotCount = Math.max(1, slides.length - visibleCount + 1);
+  const dotCount = 5; // 固定で5つのドット
   for (let i = 0; i < dotCount; i++) {
     const dot = document.createElement('button');
     if (i === 0) dot.classList.add('active');
@@ -133,21 +131,17 @@ document.addEventListener('DOMContentLoaded', function() {
   function update() {
     const scrollTo = getScrollAmount() * current;
     track.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+    // ドットのアクティブ状態を設定
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+    });
     updateSlideClasses();
   }
 
-  prevBtn.addEventListener('click', () => {
-    current = Math.max(0, current - 1);
-    update();
-  });
-  nextBtn.addEventListener('click', () => {
-    current = Math.min(dotCount - 1, current + 1);
-    update();
-  });
+
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
-      current = i;
+      current = Math.min(i, 2); // 最大位置を2に制限
       update();
     });
   });
@@ -168,17 +162,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Gallery モーダル機能
 document.addEventListener('DOMContentLoaded', function() {
-  const modalOverlay = document.getElementById('modalOverlay');
+  const modal = document.getElementById('galleryModal');
   const modalImage = document.getElementById('modalImage');
   const modalClose = document.getElementById('modalClose');
-  const galleryImages = document.querySelectorAll('.gallery-grid .photo-animate-wrap img');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const galleryImages = document.querySelectorAll('.photo-animate-wrap');
 
   // 画像クリックでモーダル表示
-  galleryImages.forEach(img => {
-    img.addEventListener('click', function() {
-      modalImage.src = this.src;
-      modalImage.alt = this.alt;
-      modalOverlay.classList.add('active');
+  galleryImages.forEach(wrap => {
+    wrap.addEventListener('click', function() {
+      const img = this.querySelector('img');
+      const modalSrc = this.getAttribute('data-modal');
+      modalImage.src = modalSrc || img.src;
+      modalImage.alt = img.alt;
+      modal.classList.add('active');
       document.body.style.overflow = 'hidden'; // スクロール防止
     });
   });
@@ -195,26 +192,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ESCキーでモーダル閉じる
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeModal();
     }
   });
 
   function closeModal() {
-    modalOverlay.classList.remove('active');
+    modal.classList.remove('active');
     document.body.style.overflow = ''; // スクロール復活
   }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('hamburgerMenu');
-  const overlay = document.getElementById('mobileMenuOverlay');
-  if (hamburger && overlay) {
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      overlay.classList.toggle('active');
-      document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
-    });
-  }
+// ハンバーガーメニュー
+document.addEventListener('DOMContentLoaded', function () {
+  const hamburger = document.getElementById('hamburgerMenu'); // ハンバーガー
+  const mobileNav = document.getElementById('mobileNavList'); // メニュー全体
+  const mobileHeader = document.querySelector('.mobile-header'); // ロゴ含む上部
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');          // ハンバーガー → × 変形
+    mobileNav.classList.toggle('active');          // メニュー表示・非表示
+    mobileHeader.classList.toggle('hide-logo');    // ロゴ表示・非表示
+  });
 });
+
+
+
 

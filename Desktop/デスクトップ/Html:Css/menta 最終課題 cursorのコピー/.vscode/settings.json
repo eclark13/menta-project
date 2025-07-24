@@ -7,5 +7,6 @@
       "savePath": "/public/assets/css" // ルートからの絶対パス
     }
   ],
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "git.ignoreLimitWarning": true
 }

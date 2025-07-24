@@ -32,60 +32,59 @@
     <!-- Swiper JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 </head>
+
+
   <body id="top">
+
+    <!-- モバイルヘッダー -->
+    <div class="mobile-header">
+      <a href="#top" class="logo-link">
+        <h1 class="zen-old-mincho-bold">Serene<br>Wedding</h1>
+      </a>
+      <button class="hamburger" id="hamburgerMenu" aria-label="メニュー">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
     <!-- メインビジュアル -->
     <section class="main-visual">
         <video src="main-video.mp4" autoplay muted loop playsinline preload="auto" poster="img/wedding-01.jpg"></video>
-        
-          <!-- モバイルヘッダー -->
-        <div class="mobile-header">
-          <a href="#top" class="logo-link">
-            <h1 class="zen-old-mincho-bold">Serene<br>Wedding</h1>
-          </a>
-          <button class="hamburger-menu" id="hamburgerMenu" aria-label="メニュー">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-        
-        <!-- モバイルメニューオーバーレイ -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-          <div class="mobile-menu-content">
-            <a href="#top" class="logo-link">
-              <h1 class="zen-old-mincho-bold">Serene<br>Wedding</h1>
-            </a>
-            <div class="menu-divider"></div>
-            <nav class="mobile-nav">
-              <ul class="zen-old-mincho-bold">
-                <li><a href="#Pickup">Pickup</a></li>
-                <li><a href="#Plan">Plan</a></li>
-                <li><a href="#Feature">Feature</a></li>
-                <li><a href="#Gallery">Gallery</a></li>
-              </ul>
-              <div class="mobile-contact zen-old-mincho-bold">
-                <div class="contact-button">Contact</div>
-              </div>
-              <div class="mobile-social-link">
-                <a href="#" aria-label="instagram">
-                  <img src="img/instagram.svg" alt="instagram">
-                </a>
-                <a href="#" aria-label="facebook">
-                  <img src="img/facebook-nav.svg" alt="facebook">
-                </a>
-              </div>
-            </nav>
-          </div>
-        </div>
     </section>
+    
+    <!-- モバイルメニュー -->
+    <nav class="mobile-nav-list" id="mobileNavList">
+      <a href="#top" class="logo-link">
+        <h1 class="zen-old-mincho-bold">
+           Serene<br>Wedding</h1>
+      </a>
+      <div class="menu-underline"></div>
+      <ul>
+        <li><a href="#Pickup">Pickup</a></li>
+        <li><a href="#Plan">Plan</a></li>
+        <li><a href="#Feature">Feature</a></li>
+        <li><a href="#Gallery">Gallery</a></li>
+        <li><a href="#Contact">Contact</a></li>
+      </ul>
+    </nav>
+      
+
     
     <div id="wrapper">
     <header>
         <div class="header-inner">
 
             <a href="#top" class="logo-link">
-                <h1 class="zen-old-mincho-bold">Serene<br> Wedding</h1>
+                <h1 class="zen-old-mincho-bold">    <span class="top">Serene</span>
+                  <span class="bottom">Wedding</span> </h1>
             </a>
+
+            <div class="hamburger" id="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
 
             <nav id="navi">
@@ -94,7 +93,6 @@
                     <li><a href="#Plan">Plan</a></li>
                     <li><a href="#Feature">Feature</a></li>
                     <li><a href="#Gallery">Gallery</a></li>
-                    <li><a href="#SNS">SNS</a></li>
                 </ul>
                 <div class="nav-contact zen-old-mincho-bold">
                     <div class="contact-button">Contact</div>
@@ -112,10 +110,10 @@
             
         </div>
       </header>
-      <main>
+       <main>
           <!-- キャッチコピー -->
   <section class="lead-text zen-old-mincho-regular">
-    <p class="title">雄大な自然の中で、二人だけの特別な瞬間を。</p>
+    <p class="title">穏やかな自然の中で、二人だけの特別な瞬間を。</p>
     <p class="text">心地よい風と美しい景色に囲まれながら、<br>
       深い愛を誓うお二人へ、一生に残るリゾートウエディングを叶えます。
     </p>
@@ -128,22 +126,21 @@
        おすすめ情報
       </span></h2>
     <div class="pickup-slider-simple">
-      <button class="pickup-nav prev" aria-label="前へ">&#8249;</button>
       <div class="pickup-track">
         <div class="pickup-slide">
           <img src="img/wedding-01.jpg" alt="シーズン限定プラン">
           <p class="title zen-old-mincho-semibold">シーズン限定プラン</p>
-          <p class="text">季節ごとの自然美を活かした特別な撮影プラン</p>
+          <p class="text">季節に応じた四季折々の自然美をバックに撮影</p>
         </div>
         <div class="pickup-slide">
           <img src="img/wedding-02.jpg" alt="サンセットプラン">
           <p class="title zen-old-mincho-semibold">【夏季限定】サンセットプラン</p>
-          <p class="text">夕日をバックに幻想的なウエディングを演出</p>
+          <p class="text">夏ならではの鮮やかな夕日をバックに、幻想的なお二人を演出します。</p>
         </div>
         <div class="pickup-slide">
           <img src="img/wedding-03.jpg" alt="早期予約限定キャンペーン">
           <p class="title zen-old-mincho-bold">早期予約限定キャンペーン</p>
-          <p class="text">6ヶ月以上前のご予約で特典プレゼント</p>
+          <p class="text">挙式日の6ヶ月以上前に予約された方を対象に、様々な特典をご用意</p>
         </div>
         <div class="pickup-slide">
           <img src="img/feature-1.jpg" alt="プライベートロケーション撮影">
@@ -156,7 +153,6 @@
           <p class="text">緑あふれるガーデンで自然体のウエディング</p>
         </div>
       </div>
-      <button class="pickup-nav next" aria-label="次へ">&#8250;</button>
       <div class="pickup-dots"></div>
     </div>
   </section>
@@ -181,8 +177,8 @@
         <p class="text ">四季の移ろいを、お二人の人生最高の日に。<br>
 私たちがご提案する「四季のウエディング」は、自然の恵みと季節の魅力を存分に活かしたプランです。</p>
         <p class="text"> 
-春夏秋冬、大切なお二人にぴったりの季節をお選びください。心を込めて、その季節ならではの装飾、お料理、お衣装をコーディネートいたします。
-さらに、各地の伝統行事や季節の風物詩にちなんだ特別なイベントもご提案。
+春夏秋冬、大切なお二人にぴったりの季節をお選びください。心を込めて、その季節ならではの装飾、お料理、お衣装をコーディネートいたします。<br>
+さらに、各地の伝統行事や季節の風物詩にちなんだ特別なイベントもご提案。<br>
 忘れられない思い出となる、世界にたった一つのウエディングフォトを、私たちと一緒に創り上げましょう。</p>
         <a class="btn zen-old-mincho-semibold">プラン詳細はこちら</a>
       </div>
@@ -215,7 +211,7 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
 
   <!-- Featureセクション -->
  <section id="Feature" class="feature">
-    <h2><span class="en pinyon-script-regular ">Feature</span>
+    <h2><span class="en pinyon-script-regular">Feature</span>
       <span class="jp">
        Serene Weddingの特徴
       </span></h2>  
@@ -224,7 +220,7 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
     <img src="img/feature-1.jpg" alt="写真">
     <div class="text-box">
       <p class="title zen-old-mincho-semibold">お二人の時間を大切にする撮影プラン</p>
-      <p class="text zen-old-mincho-regular">貸切のプライベートロケーションを用意し、余裕のあるスケジュールで撮影を行います。
+      <p class="text zen-old-mincho-regular">貸切のプライベートロケーションを用意し、余裕のあるスケジュールで撮影を行います。<br>
 出会いや思い出を反映したストーリー性のある撮影や、自然な愛情表現を捉える瞬間を大切にします。</p>
     </div>
   </div>
@@ -234,9 +230,9 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
     <div class="img-box">
     <img src="img/feature-2.jpg" alt="写真">
     <div class="text-box">
-      <p class="title zen-old-mincho-semibold">自然との調和を大切にするロケーション</p>
-      <p class="text zen-old-mincho-regular">四季折々の美しい自然をバックに、お二人だけの特別な瞬間を演出します。
-海辺、森、花畑など、お二人の思い出に残る場所で、心に残る写真を撮影いたします。</p>
+      <p class="title zen-old-mincho-semibold">季節ごとの自然の美しさを満喫</p>
+      <p class="text zen-old-mincho-regular">
+        春には桜並木や新緑の森、夏には青い海と白い砂浜、秋には紅葉の美しい風景、冬には幻想的な雪景色など、四季折々の魅力的な背景で思い出に残る写真を撮影します。</p>
     </div>
   </div>
   </div>
@@ -245,74 +241,85 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
   <div class="img-box">
     <img src="img/feature-3.jpg" alt="写真">
     <div class="text-box">
-      <p class="title zen-old-mincho-semibold">プロフェッショナルな技術とサービス</p>
-      <p class="text zen-old-mincho-regular">経験豊富なカメラマンとスタイリストが、お二人の魅力を最大限に引き出します。
-撮影前の打ち合わせから、当日の撮影、お写真の仕上げまで、すべてにおいて最高品質をお約束いたします。</p>
+      <p class="title zen-old-mincho-semibold">特別な空間での思い出作り</p>
+      <p  class="text zen-old-mincho-regular">
+        プライベートビーチや貸切の森林など、非日常的な環境で撮影を行います。<br>
+        また、花畑や満天の星空など、その時期でしか見られない絶景での撮影も行っています。
+</p>
     </div>
   </div>
   </div>
 </section>
-  <!-- Galleryセクション -->
-  <section id="Gallery" class="gallery">
-    <h2>
-      <span class="en pinyon-script-regular">Gallery</span>
-      <span class="jp">ギャラリー</span>
-    </h2>
 
-    <div class="gallery-grid">
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img01.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img02.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img03.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img04.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img05.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img06.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img07.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img08.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img09.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-      <div class="photo-animate-wrap">
-        <img src="img/grid-img10.jpg" alt="ギャラリーの写真">
-        <div class="photo-animate-border"></div>
-      </div>
-    </div>
-</section>
 
-<!-- モーダル -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-content">
-    <div class="modal-image-container">
-      <button class="modal-close" id="modalClose"> ×</button>
-      <img id="modalImage"  alt="モーダル画像">
-      <div class="photo-animate-border"></div>
+<section id="Gallery" class="gallery">
+  <h2>
+    <span class="en pinyon-script-regular">Gallery</span>
+    <span class="jp">ギャラリー</span>
+  </h2>
+
+  <div class="gallery-box">
+    <div class="gallery gallery-grid">
+      <div class="row row1">
+        <div class="photo-animate-wrap" data-modal="img/grid-img01.jpg">
+          <img src="img/grid-img01.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img02.jpg">
+          <img src="img/grid-img02.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img03.jpg">
+          <img src="img/grid-img03.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img04.jpg">
+          <img src="img/grid-img04.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+      </div>
+      <div class="row row2">
+        <div class="photo-animate-wrap" data-modal="img/grid-img05.jpg">
+          <img src="img/grid-img05.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img06.jpg">
+          <img src="img/grid-img06.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img07.jpg">
+          <img src="img/grid-img07.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+      </div>
+      <div class="row row3">
+        <div class="photo-animate-wrap" data-modal="img/grid-img08.jpg">
+          <img src="img/grid-img08.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img09.jpg">
+          <img src="img/grid-img09.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+        <div class="photo-animate-wrap" data-modal="img/grid-img10.jpg">
+          <img src="img/grid-img10.jpg" alt="">
+          <div class="photo-animate-border"></div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+
+  <!-- モーダル -->
+  <div class="modal" id="galleryModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <img class="modal-image" id="modalImage" alt="">
+    </div>
+  </div>
+
+</section>
+
 
 <section id="Contact" class="contact">
 
@@ -326,7 +333,7 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
         まずはお気軽にお問い合わせください。</p>
     </div>
     <div class="contact-btn-area">
-      <a class="contact-btn zen-old-mincho-bold">お問い合わせはこちら</a>
+      <a class="contact-btn zen-old-mincho-semibold">お問い合わせはこちら</a>
     </div>
   </div>
 </section>
@@ -372,7 +379,6 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
               <li><a href="#Plan">Plan</a></li>
               <li><a href="#Feature">Feature</a></li>
               <li><a href="#Gallery">Gallery</a></li>
-              <li><a href="#SNS">SNS</a></li>
               <li><a href="#Contact">Contact</a></li>
             </ul>
           </nav>
@@ -381,6 +387,8 @@ barefoot(裸足)スタイルやトロピカルな装飾で、リラックスし�
           <p class="copyright">©Serene Wedding. 2025</p>
         </div>
       </footer>
+
+      
     </div>
 </body>
 </html>

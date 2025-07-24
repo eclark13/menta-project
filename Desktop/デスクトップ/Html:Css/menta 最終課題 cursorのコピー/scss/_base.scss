@@ -2,11 +2,11 @@ body{
     color: #333;
     line-height: 1.8;
     font-family: "Noto Sans JP", sans-serif;
+    box-sizing: border-box;
 
         *{
             box-sizing: border-box;
         }
-        box-sizing: border-box;
 }
 a{
     color: #333;
@@ -16,12 +16,7 @@ img{
     max-width: 100%;
     vertical-align: bottom;
 }
-    p{
-    margin-bottom: 1.5em;
-    &:last-of-type{
-        margin-bottom: 0;
-    }
-}
+    
     h1,h2,h3,h4,h5,h6{
     font-weight: normal;
 }
