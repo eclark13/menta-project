@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const pickupSwiper = new Swiper('.pickup-swiper', {
     slidesPerView: 3,
-    spaceBetween: 35,
+    spaceBetween: 24,
     loop: true,
     loopAdditionalSlides: 1,
     loopedSlides: 1,
@@ -101,22 +101,17 @@ document.addEventListener('DOMContentLoaded', function() {
     breakpoints: {
       320: {
         slidesPerView: 1,
-        spaceBetween: 15,
+        spaceBetween: 24,
         loopedSlides: 1,
       },
       480: {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 24,
         loopedSlides: 1,
       },
       600: {
         slidesPerView: 2,
-        spaceBetween: 20,
-        loopedSlides: 2,
-      },
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 25,
+        spaceBetween: 24,
         loopedSlides: 2,
       },
       1024: {
@@ -171,19 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ハンバーガーメニュー
-document.addEventListener('DOMContentLoaded', function () {
-  const hamburger = document.getElementById('hamburgerMenu'); // ハンバーガー
-  const mobileNav = document.getElementById('mobileNavList'); // メニュー全体
-  const mobileHeader = document.querySelector('.mobile-header'); // ロゴ含む上部
+const hamburger = document.getElementById("hamburger");
+const mobileNav = document.getElementById("mobileNav");
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');          // ハンバーガー → × 変形
-    mobileNav.classList.toggle('active');          // メニュー表示・非表示
-    mobileHeader.classList.toggle('hide-logo');    // ロゴ表示・非表示
-  });
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  mobileNav.classList.toggle("active");
 });
-
-
-
-
