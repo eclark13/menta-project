@@ -58,17 +58,7 @@ body{
   justify-content: center;
   padding: 40px 16px;
   
-  @media screen and (max-width: 600px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-  }
-  
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-    gap: 15px;
-  }
+
 }
 
 h1 {
@@ -529,6 +519,17 @@ main {
       white-space: nowrap;
       flex: 1;
       text-align: center;
+      
+      @media screen and (max-width: 1200px) {
+        font-size: 15px;
+        padding: 8px 30px;
+      }
+      
+      @media screen and (max-width: 900px) {
+        font-size: 14px;
+        padding: 6px 20px;
+      }
+      
       @include mix.mq(var.$md){
         font-size: 14px;
         padding: 0px;
@@ -624,6 +625,10 @@ main {
       @include mix.mq(var.$md){
         padding: 16px 93px;
         font-size: 18px;
+      }
+      @media screen and (max-width: 400px) {
+        font-size: 18px;
+        padding: 10px 30px;
       }
       
       &:hover {
@@ -1047,6 +1052,10 @@ letter-spacing: 1.2px;
   padding: 80px 40px 120px 40px;
   max-width: 1080px;
   margin: 0 auto;
+  @include mix.mq(var.$lg){
+    padding: 40px 20px;
+    height: 329px;
+  }
   @include mix.mq(var.$md){
     padding: 40px 20px;
     height: 329px;
@@ -1060,22 +1069,32 @@ letter-spacing: 1.2px;
   max-width: 920px;
   margin: 0 auto;
   align-items: center;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+
   @include mix.mq(var.$md){
     flex-direction: column;
   }
   
-    
  
   }
   
   .contact-text-area {
     flex: 1;
     
+    @media screen and (max-width: 1024px) {
+      text-align: center;
+    }
     
     h2 {
       color: #fff;
       margin-bottom: 20px;
       text-align: left;
+      @media screen and (max-width: 1024px) {
+        text-align: center;
+      }
       @include mix.mq(var.$md){
         text-align: center;
         margin-bottom: 24px;
@@ -1131,16 +1150,22 @@ letter-spacing: 1.2px;
     text-decoration: none;
     color: #000;
     display: inline-block;
+    
+    @media screen and (max-width: 1024px) {
+      padding: 16px 100px;
+    }
+    
     @include mix.mq(var.$md){
       font-size: 18px;
       padding: 16px 123.5px;
       
     }
+    @media screen and (max-width: 470px) {
+      font-size: 18px;
+      padding: 10px 40px;
+    }
     
-
-    
-
-    &:hover {
+  &:hover {
       background-color: #f8f8f8;
     }
  }
@@ -1248,13 +1273,16 @@ footer {
   max-width: 920px;
   margin: 0 auto;
   overflow-x: hidden; // 横方向のはみ出し防止
-  
-
 
   
-  @media screen and (max-width: 600px) {
-    max-width: 100%;
-    padding: 30px 20px;
+  @include mix.mq(var.$xl){
+  padding: 0px 3%;
+  
+
+  }
+  @include mix.mq(var.$md){
+  padding: 27px 3%;
+      max-width: 100%;
     
     .footer-content {
       flex-direction: column;
@@ -1265,8 +1293,9 @@ footer {
     .footer-nav ul {
       gap: 20px;
     }
+
   }
-  
+
  
   
   .footer-content {
@@ -1380,27 +1409,26 @@ footer {
 
 
 .mobile-header {
-  flex-direction: row;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: white;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  // padding: 10px 21px 0 21px;
+  display: none; // デフォルトでは非表示
   
-
-
-  @media screen and (min-width: 768px) {
-    display: none  // PCでは非表示
+  @media screen and (max-width: 768px) {
+    display: flex; // 768px以下で表示
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: white;
+    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
   }
+
 
   .logo-link {
     text-decoration: none;
+    
 
     h1 {
       font-size: 20px;
@@ -1410,6 +1438,7 @@ footer {
       position: fixed;
       left: 21px;
       top: 18px;
+      
       .mobile-top{
         display: block;
         font-size: 24px;
@@ -1436,6 +1465,16 @@ footer {
     position: fixed;
     right: 20px;
     top: 28px;
+
+    &.active {
+      width: 50px;   // バツ時の幅
+      height: 50px;  // バツ時の高さ
+      justify-content: center; // 中央配置
+      align-items: center; // 中央配置
+      right: 15px;
+      top: 20px;
+  
+    }
     
 
     span {
@@ -1448,16 +1487,23 @@ footer {
     }
 
     &.active span:nth-child(1) {
-      transform: translateY(11px) rotate(45deg);
+      transform: translateY(0) rotate(45deg);
+      width: 100%;
+      margin-left: 0;
     }
     &.active span:nth-child(2) {
       opacity: 0;
     }
     &.active span:nth-child(3) {
-      transform: translateY(-11px) rotate(-45deg);
+      transform: translateY(0) rotate(-45deg);
+      width: 100%;
+      margin-left: 0;
     }
   }
 }
+
+
+  
 
 
 .mobile-nav {
@@ -1465,7 +1511,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: white;
   display: none;
   flex-direction: column;
@@ -1481,9 +1527,11 @@ footer {
   ul {
     list-style: none;
     text-align: center;
+    margin-top: -113px;
 
     li {
-      margin: 16px 0;
+      margin: 20px 0;
+      
 
       a {
         font-size: 18px;
@@ -1496,4 +1544,127 @@ footer {
       }
     }
   }
+
+
+  .nav-contact {
+    .contact-button {
+      display: inline-block;
+      padding: 8px 123px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+      background-color: #A88657;
+      
+  
+    }
+  }
+
+  .social-link {
+    display: flex;
+    gap: 15px;
+    margin-top: 24px;
+
+
+    a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: filter 0.2s, opacity 0.2s;
+      }
+      
+      &:hover img {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  // ロゴとナビの間の横線（openの時だけ表示）
+  &.active::before {
+    content: "";
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 1px;
+    background-color: #333;
+  }
+
+  .contact-button {
+    display: inline-block;
+    padding: 8px 51px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #A88657;
+    
+
+  }
 }
+
+
+
+通常時のロゴ
+.logo-default {
+  display: block;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+
+メニュー開いたときのロゴ（初期は非表示）
+
+.logo-open {
+  display: none;
+  position: fixed;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+  text-align: center;
+
+  h1 {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1.6px;
+    line-height: 1.2;
+    color: #333;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #333;
+    display: inline-block;
+    margin: 0;
+    padding: 0 12px;
+  }
+}
+
+
+
+メニューが開いたときに切り替え
+.mobile-header.open .logo-default {
+  display: none;
+}
+
+.mobile-header.open .logo-open {
+  display: block;
+}
+
+// openの時だけ中央配置とマージン追加
+.mobile-header.open .logo-link h1 {
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 46px;
+}
+
+
+
+
+

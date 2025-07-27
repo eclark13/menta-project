@@ -286,30 +286,6 @@ body {
           justify-content: center;
   padding: 40px 16px;
 }
-@media screen and (max-width: 600px) {
-  .header-inner {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 0 20px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .header-inner {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    gap: 15px;
-  }
-}
 
 h1 {
   text-align: center;
@@ -740,6 +716,18 @@ main {
           flex: 1;
   text-align: center;
 }
+@media screen and (max-width: 1200px) {
+  .plan .plan-tabs li {
+    font-size: 15px;
+    padding: 8px 30px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .plan .plan-tabs li {
+    font-size: 14px;
+    padding: 6px 20px;
+  }
+}
 @media screen and (max-width: 768px) {
   .plan .plan-tabs li {
     font-size: 14px;
@@ -829,6 +817,12 @@ main {
   .plan .plan-content .btn {
     padding: 16px 93px;
     font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .plan .plan-content .btn {
+    font-size: 18px;
+    padding: 10px 30px;
   }
 }
 .plan .plan-content .btn:hover {
@@ -1288,6 +1282,12 @@ main {
   max-width: 1080px;
   margin: 0 auto;
 }
+@media screen and (max-width: 1024px) {
+  .contact {
+    padding: 40px 20px;
+    height: 329px;
+  }
+}
 @media screen and (max-width: 768px) {
   .contact {
     padding: 40px 20px;
@@ -1307,6 +1307,14 @@ main {
       -ms-flex-align: center;
           align-items: center;
 }
+@media screen and (max-width: 1024px) {
+  .contact .contact-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 @media screen and (max-width: 768px) {
   .contact .contact-content {
     -webkit-box-orient: vertical;
@@ -1320,10 +1328,20 @@ main {
       -ms-flex: 1;
           flex: 1;
 }
+@media screen and (max-width: 1024px) {
+  .contact .contact-text-area {
+    text-align: center;
+  }
+}
 .contact .contact-text-area h2 {
   color: #fff;
   margin-bottom: 20px;
   text-align: left;
+}
+@media screen and (max-width: 1024px) {
+  .contact .contact-text-area h2 {
+    text-align: center;
+  }
 }
 @media screen and (max-width: 768px) {
   .contact .contact-text-area h2 {
@@ -1368,10 +1386,21 @@ main {
   color: #000;
   display: inline-block;
 }
+@media screen and (max-width: 1024px) {
+  .contact .contact-btn {
+    padding: 16px 100px;
+  }
+}
 @media screen and (max-width: 768px) {
   .contact .contact-btn {
     font-size: 18px;
     padding: 16px 123.5px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .contact .contact-btn {
+    font-size: 18px;
+    padding: 10px 40px;
   }
 }
 .contact .contact-btn:hover {
@@ -1490,10 +1519,15 @@ footer {
   margin: 0 auto;
   overflow-x: hidden;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
   footer {
+    padding: 0px 3%;
+  }
+}
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 27px 3%;
     max-width: 100%;
-    padding: 30px 20px;
   }
   footer .footer-content {
     -webkit-box-orient: vertical;
@@ -1610,30 +1644,30 @@ footer .footer-info .copyright {
 }
 
 .mobile-header {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: white;
-  z-index: 1000;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: none;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .mobile-header {
-    display: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: white;
+    z-index: 1000;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 .mobile-header .logo-link {
@@ -1678,6 +1712,18 @@ footer .footer-info .copyright {
   right: 20px;
   top: 28px;
 }
+.mobile-header .hamburger.active {
+  width: 50px;
+  height: 50px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  right: 15px;
+  top: 20px;
+}
 .mobile-header .hamburger span {
   display: block;
   height: 2px;
@@ -1688,15 +1734,19 @@ footer .footer-info .copyright {
   transition: 0.3s;
 }
 .mobile-header .hamburger.active span:nth-child(1) {
-  -webkit-transform: translateY(11px) rotate(45deg);
-          transform: translateY(11px) rotate(45deg);
+  -webkit-transform: translateY(0) rotate(45deg);
+          transform: translateY(0) rotate(45deg);
+  width: 100%;
+  margin-left: 0;
 }
 .mobile-header .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
 .mobile-header .hamburger.active span:nth-child(3) {
-  -webkit-transform: translateY(-11px) rotate(-45deg);
-          transform: translateY(-11px) rotate(-45deg);
+  -webkit-transform: translateY(0) rotate(-45deg);
+          transform: translateY(0) rotate(-45deg);
+  width: 100%;
+  margin-left: 0;
 }
 
 .mobile-nav {
@@ -1704,7 +1754,7 @@ footer .footer-info .copyright {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: white;
   display: none;
   -webkit-box-orient: vertical;
@@ -1729,9 +1779,10 @@ footer .footer-info .copyright {
 .mobile-nav ul {
   list-style: none;
   text-align: center;
+  margin-top: -113px;
 }
 .mobile-nav ul li {
-  margin: 16px 0;
+  margin: 20px 0;
 }
 .mobile-nav ul li a {
   font-size: 18px;
@@ -1740,4 +1791,106 @@ footer .footer-info .copyright {
 }
 .mobile-nav ul li a:hover {
   color: #a88657;
+}
+.mobile-nav .nav-contact .contact-button {
+  display: inline-block;
+  padding: 8px 123px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background-color: #A88657;
+}
+.mobile-nav .social-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+  margin-top: 24px;
+}
+.mobile-nav .social-link a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.mobile-nav .social-link a img {
+  width: 100%;
+  height: auto;
+  display: block;
+  -webkit-transition: opacity 0.2s, -webkit-filter 0.2s;
+  transition: opacity 0.2s, -webkit-filter 0.2s;
+  transition: filter 0.2s, opacity 0.2s;
+  transition: filter 0.2s, opacity 0.2s, -webkit-filter 0.2s;
+}
+.mobile-nav .social-link a:hover img {
+  opacity: 0.6;
+}
+.mobile-nav.active::before {
+  content: "";
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 300px;
+  height: 1px;
+  background-color: #333;
+}
+.mobile-nav .contact-button {
+  display: inline-block;
+  padding: 8px 51px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background-color: #A88657;
+}
+
+通常時のロゴ .logo-default {
+  display: block;
+}
+@media screen and (max-width: 768px) {
+  通常時のロゴ .logo-default {
+    display: block;
+  }
+}
+
+メニュー開いたときのロゴ（初期は非表示） .logo-open {
+  display: none;
+  position: fixed;
+  top: 48px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 1002;
+  text-align: center;
+}
+メニュー開いたときのロゴ（初期は非表示） .logo-open h1 {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  line-height: 1.2;
+  color: #333;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #333;
+  display: inline-block;
+  margin: 0;
+  padding: 0 12px;
+}
+
+メニューが開いたときに切り替え .mobile-header.open .logo-default {
+  display: none;
+}
+
+.mobile-header.open .logo-open {
+  display: block;
+}
+
+.mobile-header.open .logo-link h1 {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin-top: 46px;
 }

@@ -166,10 +166,47 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+
+
 const hamburger = document.getElementById("hamburger");
 const mobileNav = document.getElementById("mobileNav");
+const mobileHeader = document.querySelector(".mobile-header");
 
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   mobileNav.classList.toggle("active");
+  mobileHeader.classList.toggle("open"); // ← これを追加
+});
+
+// モバイルナビのリンクをクリックした時にメニューを閉じてリンク先へ移動
+const mobileNavLinks = document.querySelectorAll(".mobile-nav ul li a");
+
+mobileNavLinks.forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    
+    // メニューを閉じる
+    hamburger.classList.remove("active");
+    mobileNav.classList.remove("active");
+    mobileHeader.classList.remove("open");
+    
+    // リンク先へ移動（少し遅延を入れてメニューが閉じてからスクロール）
+    const targetId = this.getAttribute("href").substring(1);
+    const targetSection = document.getElementById(targetId);
+    
+    if (targetSection) {
+      setTimeout(() => {
+        // より正確な位置計算
+        const targetRect = targetSection.getBoundingClientRect();
+        const headerHeight = 80; // モバイルヘッダーの高さを調整
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetPosition = scrollTop + targetRect.top - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth"
+        });
+      }, 300); // メニューが閉じるアニメーションを待つ
+    }
+  });
 });
